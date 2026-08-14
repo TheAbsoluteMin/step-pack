@@ -26,3 +26,26 @@ However, with the help of the Espressif Systems datasheet, I was able to begin w
 **Total time spent: 2.1 hours**
 
 ---
+
+# Log 2: August 13, 2026 - Power Design Schematics - 2.2 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/Z9I2UxFSzDmm">link</a>.
+
+Today, I began working on the power management system. Starting with the USB-C receptacle, I wired it with the USBLC6-2SC6 ESD protection chip. Initially, I wanted to avoid doing so because of a past difficulty of maintaining equal lengths of data lines in a past project. However, I realized a way to avoid my past challenge as it turns out that pins 1 and 6 are practically identical to pins 3 and 4, meaning I could wire either D+ or D- into them! I had thought D+ was only supposed to go in pins 1 and 6 before, which complicated wiring!
+
+<img width="736" height="478" alt="image" src="https://github.com/user-attachments/assets/ee238bbc-186c-4ccd-8103-226b1202bb42" />
+
+When I got to the VBUS 5V line of the USB-C, I realized that I would need to somehow power the ESP32-S3 MINI 1 when I flash the code. The problem is that I initially planned to step down 24V to power the MCU during normal operation. This meant I had to include the AP2112K-3.3 to step down the voltage for the MCU. 
+
+<img width="979" height="763" alt="image" src="https://github.com/user-attachments/assets/01d45459-91ae-4e51-ae07-d6257165aef2" />
+
+In order to safely handle both the USB-C 5V power and buck converter's stepped down power of 24V to 5V, I implemented the BAT54C in order to connect the two power sources, which would then be stepped down to a clean 3.3V. With this, I also can safely use one power source or even both at the same time!
+
+<img width="1711" height="894" alt="image" src="https://github.com/user-attachments/assets/738a773b-80a5-4253-8c15-f368b413b8dd" />
+
+Unlike the AP2112K-3.3, the LMR16006YQ5 buck regulator was much more complicated to wire.
+
+<img width="1923" height="573" alt="image" src="https://github.com/user-attachments/assets/e2b318de-5f92-425a-8736-d806e8c69769" />
+
+**Total time spent: 2.2 hours**
+
+---
