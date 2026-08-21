@@ -127,3 +127,107 @@ With that, the schematics is finished for now!
 **Total time spent: 3.1 hours**
 
 ---
+
+# Log 6: August 17, 2026 - Starting PCB - 2.3 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/PgFwSBR3iHUW">link</a>.
+
+After verifying and organizing my modules and parts into clean schematic sheets, I transitioned to the PCB editor.
+
+<img width="1824" height="959" alt="image" src="https://github.com/user-attachments/assets/71cbce7a-9de2-482d-8032-b8de73f9ef44" />
+<img width="1824" height="959" alt="image" src="https://github.com/user-attachments/assets/7a036ba8-d4fe-452a-8fd9-8ca37734fbab" />
+
+I started by setting up my edge.cuts layout with the standard footprint of the back of a NEMA 17 stepper motor.
+
+<img width="1824" height="959" alt="image" src="https://github.com/user-attachments/assets/f20df89e-c024-46cc-b9c7-200c723717b2" />
+
+Placing huge parts like the ESP32-S3 MINI 1 module while considering the header pins for the AS5600 magnetic encoder breakout module proved extremely difficult as I could not find a clean way to fit them together without colliding. The reason I chose to use the breakout module for the magnetic encoder rather than integrating the bare chip on the back of the PCB was because the ESP32-S3 MINI 1's antenna must be far away from the back of the stepper motor. While I could keep it hanging over the stepper motor, it would ruin the flush look of the back square shape of the stepper motor. Instead, I will keep the magnetic encoder close to a magnet on the stepper motor's back shaft for accurate position tracking while the WiFi antenna on the main PCB will be far away in order to preserve its WiFi signal.
+
+<img width="1824" height="959" alt="image" src="https://github.com/user-attachments/assets/a4a1327f-1a27-4c84-a276-1920d1f6ebd7" />
+
+Since the header pins got in the way, I decided to move them so that I could connect to the magnetic encoder breakout board with flexible wires instead. Even with the space freed up, I found out that my other parts, like the JST connectors and dip switch were too big.
+
+<img width="1832" height="977" alt="image" src="https://github.com/user-attachments/assets/39f0f6df-4706-4dec-a529-d0e3e578cd08" />
+
+I hope I can find a way to optimize spacing on the small PCB!
+
+**Total time spent: 2.3 hours**
+
+---
+
+# Log 7: August 18, 2026 - PCB Parts Placement - 3 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/B5Cuqg-HF0T3">link</a>.
+
+Today, I continued trying to fit everything within the square space neatly while keeping the JST connectors at the center edges. While it gave a bit of a symmetrical look, everything was still too big!
+
+<img width="826" height="799" alt="image" src="https://github.com/user-attachments/assets/689e6cd9-6cd0-4fd3-a973-8124cffcfeb2" />
+
+In order to make sure the small parts would all fit as well, I began to design a corner for the power regulation and TMC2209 modules.
+
+<img width="826" height="799" alt="image" src="https://github.com/user-attachments/assets/96c90edd-3ad7-4594-829d-65b461c59616" />
+
+Frustrated at all the parts, I decided to transition to some routing, and I worked on the USB-C receptacle routing. However, that only tested my patience further as it was not simple given the orientation of the ESP32-S3 MINI 1 module!
+
+<img width="1120" height="835" alt="image" src="https://github.com/user-attachments/assets/a1ac9049-ebe8-450f-9cea-29bc21daefc2" />
+
+After that, I returned to the TMC2209 module. Figuring out how to squeeze all its capacitors was a huge headache!
+
+<img width="1120" height="835" alt="image" src="https://github.com/user-attachments/assets/b2788aec-a125-414d-a8f0-32cdbed29d7b" />
+
+**Total time spent: 3 hours**
+
+---
+
+# Log 8: August 19, 2026 - TMC2209 Routing - 5 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/WGPjW4hOCeL9">link</a>.
+
+I finally got the motivation and courage to route the bare TMC2209 module today! Let me warn you: it was not pretty.
+
+Packing all the motor power input capacitors as outlined by the TMC2209 datasheet was extremely difficult. I had to figure out how to cleanly move the positive power line so that it would easily connect to the different pins on the TMC2209, and it took quite some time rotating the capacitors around and around until I got it.
+
+<img width="1117" height="842" alt="image" src="https://github.com/user-attachments/assets/73e1d8e5-cc89-43c6-93e6-f4ab677610ac" />
+<img width="1117" height="842" alt="image" src="https://github.com/user-attachments/assets/8fc34ac7-111b-4238-bbf5-18d1a48c6ba5" />
+
+Placing the VCP/VS and CPI/CPO capacitors proved difficult as they both had to be routed to the TMC2209 pins in under a short distance of about 5mm, but they were both next to each other! Even after so many attempts, I could barely get the VCP/VS capacitor routed in under 10mm as its required 24V connection was on an entire different edge, which greatly increased trace length!
+
+<img width="973" height="755" alt="image" src="https://github.com/user-attachments/assets/7bdf2d86-ce2a-4de7-b4cd-00ac1dab25ea" />
+
+I settled for my best attempt of about a 9mm total trace distance for the VCP/VS capacitor and 6mm total trace distance for the CPI/CPO capacitor, and I began to route the heavy 24V motor input line.
+
+<img width="973" height="755" alt="image" src="https://github.com/user-attachments/assets/ee0576e3-b2c5-46d0-aa98-3ebc50ced232" />
+
+I ended up switching to a 4 layer board as I simply had no space to fit all the wiring as most of the traces needed to be big to handle the high voltage and current.
+
+<img width="973" height="755" alt="image" src="https://github.com/user-attachments/assets/2f357776-a85c-49f1-bb2b-70de3ac10ed6" />
+
+After routing most of the pins, I realized that I had overlooked a fatal detail: the vias. It turns out that standard vias can only handle around 1 Ampere, which is not enough for the high current draw of stepper motors... This means I had to go back and squeeze bigger vias into the tight spaces!!! I was able to do so for some of the high current vias, but I had to sacrifice some clearance.
+
+<img width="1139" height="837" alt="image" src="https://github.com/user-attachments/assets/5baf780f-3e09-42fe-b8cd-abea4f2de4a4" />
+<img width="1111" height="797" alt="image" src="https://github.com/user-attachments/assets/ef4ba6cd-fe4a-42b1-802c-bd70a4eab483" />
+
+**Total time spent: 5 hours**
+
+---
+
+# Log 9: August 20, 2026 - Starting PCB Redesign - 1.1 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/_uED5JcFK8KI">link</a>.
+
+Considering my past attempt in routing the PCB, I decided to make a huge decision for my project. As the goal of the project was not to optimize for the best TMC2209 layout, I decided to replace the bare chip for the TMC2209 StepStick breakout module. The integration of existing technologies would not only streamline the PCB routing but also enable my project to reliably fulfill its key purpose of providing a cleaner and data wireless option for controlling numerous stepper motors.
+
+<img width="421" height="410" alt="image" src="https://github.com/user-attachments/assets/992eb8b2-658c-4b06-a19a-39f5c53a8b61" />
+
+As I began to adapt this change, I had to adapt the schematic symbol for the A4988 stepper motor driver so that it reflected the correct pin locations as the TMC2209 module.
+
+<img width="1888" height="852" alt="image" src="https://github.com/user-attachments/assets/d88f5d57-a1c3-4a5f-b744-94b8fb79b96f" />
+
+Moving to the PCB editor again, I completely began the PCB anew with a new design in mind. I was looking at some closed loop stepper motor PCBs, and I was inspired by their symmetry.
+
+<img width="1126" height="605" alt="image" src="https://github.com/user-attachments/assets/14e961de-54a6-41d1-9f7e-c525639248b4" />
+
+I decided to make the USB-C routing easier by putting the ESP32-S3 MINI 1 on the opposite end, which also balanced out the board appearance.
+
+<img width="1686" height="924" alt="image" src="https://github.com/user-attachments/assets/35199a5c-94b8-421a-9775-96fd18e91a61" />
+<img width="1004" height="729" alt="image" src="https://github.com/user-attachments/assets/49908509-1c03-4a60-aba2-d03ef4df5e16" />
+
+**Total time spent: 1.1 hours**
+
+---
