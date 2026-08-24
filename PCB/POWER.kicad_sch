@@ -4795,7 +4795,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "0.1uF_16V_USB"
+		(property "Value" "0.1uF_50V"
 			(at 116.586 28.702 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4875,7 +4875,7 @@
 				)
 			)
 		)
-		(property "Value" "22_D+"
+		(property "Value" "22ohms"
 			(at 144.78 54.864 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5034,7 +5034,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF_16V_BUCK"
+		(property "Value" "0.1uF_50V"
 			(at 205.74 116.8399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5536,7 +5536,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF_LED"
+		(property "Value" "0.1uF_50V"
 			(at 193.04 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5852,7 +5852,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "22uF_25V_BUCK"
+		(property "Value" "22uF_25V"
 			(at 191.77 146.0499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6029,7 +6029,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1uF_LDO"
+		(property "Value" "1uF_50V"
 			(at 159.766 73.914 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6109,7 +6109,7 @@
 				)
 			)
 		)
-		(property "Value" "5.1k_USB_CC1"
+		(property "Value" "5.1k_USB_CC"
 			(at 107.696 35.814 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6344,7 +6344,7 @@
 				)
 			)
 		)
-		(property "Value" "5.1k_USB_CC2"
+		(property "Value" "5.1k_USB_CC"
 			(at 107.188 43.688 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6590,7 +6590,7 @@
 				)
 			)
 		)
-		(property "Value" "PMEG2010EA_1"
+		(property "Value" "PMEG3010BEA"
 			(at 151.13 35.56 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6669,7 +6669,7 @@
 				)
 			)
 		)
-		(property "Value" "22_D-"
+		(property "Value" "22ohms"
 			(at 138.43 45.974 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7218,7 +7218,7 @@
 				)
 			)
 		)
-		(property "Value" "PMEG2010EA_2"
+		(property "Value" "PMEG3010BEA"
 			(at 167.132 29.21 0)
 			(show_name no)
 			(do_not_autoplace no)
