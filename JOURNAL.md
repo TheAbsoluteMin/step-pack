@@ -231,3 +231,103 @@ I decided to make the USB-C routing easier by putting the ESP32-S3 MINI 1 on the
 **Total time spent: 1.1 hours**
 
 ---
+
+# Log 10: August 21, 2026 - PCB Routing - 5.4 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/slqjmzkDkAr4">link</a>.
+
+As I redesigned the placement of the rest of the parts, including the JST connectors, I realized I did not have room for my TMC2209 step stick module. However, I realized that I could solder one side of header pins of the step stick module to the main PCB while using wires to attach to the other side of header pins!
+
+<img width="1018" height="800" alt="image" src="https://github.com/user-attachments/assets/ea0d9d79-0311-4089-ba28-4448cd5f7000" />
+
+Routing the LMR16006YQ5 buck regulator, which would step down 24V to 5V, was a bit difficult because I had to try to keep everything close while keeping in mind assembly constraints of JLCPCB PCBA. For example, I had to use a copper pour to connect the multiple SW pin 6 components.
+
+<img width="1018" height="800" alt="image" src="https://github.com/user-attachments/assets/70466856-da1f-454e-8ea8-5610faebdb90" />
+
+The USB-C receptacle was a little tricky, but I managed to fit all the routing in a tight space. I had to admit, with all the tiny parts on the PCB, it was getting a little too crowded!
+
+<img width="1018" height="800" alt="image" src="https://github.com/user-attachments/assets/4165290c-3288-42d4-8833-a215a5d00985" />
+<img width="795" height="603" alt="image" src="https://github.com/user-attachments/assets/abf79b10-1c8d-4b85-bfee-9424e11f4198" />
+
+As I was routing the LDO AP2112K-3.3 and LED, I realized that I ran out of space and that I could not place the LED in the antenna keep out zone of the ESP32-S3 MINI 1 module. Unfortunately, I would have to move it all the way across the board.
+
+<img width="1104" height="810" alt="image" src="https://github.com/user-attachments/assets/45e0c8bd-ff32-419d-bb76-5886f7a05f61" />
+<img width="1104" height="810" alt="image" src="https://github.com/user-attachments/assets/571f5a7e-4a6e-40b2-a276-6c23acd7a4d3" />
+
+I also realized that my buttons for the ESP32 enable and boot pins were too big, so I switched to the tiny B3U-1000P footprint.
+
+<img width="1104" height="810" alt="image" src="https://github.com/user-attachments/assets/ea96bd2b-5b7f-4960-b65d-efc72840ea3e" />
+
+I tried placing it above the 24V input JST connector, but I do not think I will keep it there.
+
+**Total time spent: 5.4 hours**
+
+---
+
+# Log 11: August 22, 2026 - PCB Completion - 5 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/PvYEJbqqGRbh">link</a>.
+
+With some time, I finally found a place for my two switches! They actually naturally fit near the USB-C receptacle, which was great!
+
+<img width="1104" height="810" alt="image" src="https://github.com/user-attachments/assets/4d47c921-0ede-4398-a343-35d1266567a5" />
+
+I also began routing the data and signal traces for the board, and I had to change the pin connections a couple of times in order to optimize trace lengths and locations.
+
+<img width="1025" height="824" alt="image" src="https://github.com/user-attachments/assets/175979b0-3c05-4477-b8cc-bdb5fefbf7fd" />
+
+The UART connection was somewhat difficult as I had to loop around a lot of wires.
+
+<img width="1000" height="623" alt="image" src="https://github.com/user-attachments/assets/e968eab3-51e8-4f72-9261-9d845c21ec64" />
+
+Since I ran out of room for my 3.3V line, I had to route it around the edges of the board.
+
+<img width="1028" height="829" alt="image" src="https://github.com/user-attachments/assets/5e37e085-3da5-4711-bc09-04943c02ff1b" />
+<img width="1028" height="829" alt="image" src="https://github.com/user-attachments/assets/f88672bb-012b-4a3f-b5f2-c44a510ce722" />
+
+However, I did have to route underneath the ESP32, which made me uneasy as that could interrupt the ground plane on the back layer.
+
+Since I placed the LED far away from the merged 5V power line after the diode OR gate, I had route the 5V line so far away and go around many obstacles!
+
+<img width="1028" height="829" alt="image" src="https://github.com/user-attachments/assets/67b18d5a-b993-4671-a0f4-d45e0d5d92c4" />
+<img width="1028" height="829" alt="image" src="https://github.com/user-attachments/assets/7c5cf95c-b9d7-43f3-9c29-16961b789724" />
+<img width="1028" height="829" alt="image" src="https://github.com/user-attachments/assets/96c4738c-825f-4a6f-94e4-1afbaa8cfcfb" />
+<img width="1028" height="829" alt="image" src="https://github.com/user-attachments/assets/90751434-2803-49d0-b0a8-90527bdf9137" />
+
+With some copper fills, I made a dual layer ground copper fill!
+
+<img width="1106" height="823" alt="image" src="https://github.com/user-attachments/assets/13b95299-4260-46e2-bc01-f7c04ad88429" />
+
+**Total time spent: 5 hours**
+
+---
+
+# Log 12: August 22, 2026 - PCB Final Touches - 2 hours
+Timelapse <a href="https://lapse.hackclub.com/timelapse/YbPYQX-tfSPW">link</a>.
+
+Today, I started ordering my board on JLCPCB.
+
+<img width="1917" height="886" alt="image" src="https://github.com/user-attachments/assets/21f48898-9a63-49a3-97d7-a5ae0bb82f20" />
+
+I also began matching my parts with parts on JLCPCB Assembly.
+
+<img width="1835" height="796" alt="image" src="https://github.com/user-attachments/assets/7d29b53f-0ed2-4e64-88a8-0f4d6d6a1c19" />
+
+However, it was extremely difficult as it took quite some time to balance cost and quality.
+
+I had to implement some edits on the PCB after realizing some errors that needed fixing! I needed to stitch up the ground plane that I had broken up before with vias.
+
+<img width="237" height="236" alt="image" src="https://github.com/user-attachments/assets/e224bf2d-3d2e-49dd-89f1-41ef4916ea7c" />
+
+Also, it appeared that as I was moving around the data connections on the ESP32, I had accidentally moved the SDA and SCL lines onto the strapping GPIO pins 45 and 46! I thus had to adjust the schematic and PCB to move them away from those pins.
+
+<img width="923" height="865" alt="image" src="https://github.com/user-attachments/assets/1d5683c0-82ed-40f7-91ed-6fe0bc3d65f6" />
+<img width="1158" height="834" alt="image" src="https://github.com/user-attachments/assets/1eccb5cd-2012-41fe-b1a6-467716f412ac" />
+
+After verifying my order on JLCPCB, I found it to be a shocking $139.56 to order 5 assembled boards!
+
+<img width="1234" height="731" alt="image" src="https://github.com/user-attachments/assets/1f270a30-e7e1-4fe9-abe1-df8154700f55" />
+
+I will have to optimize the cost or order less assembled boards later.
+
+**Total time spent: 2 hours**
+
+---
