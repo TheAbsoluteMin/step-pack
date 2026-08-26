@@ -300,7 +300,7 @@ With some copper fills, I made a dual layer ground copper fill!
 
 ---
 
-# Log 12: August 22, 2026 - PCB Final Touches - 2 hours
+# Log 12: August 23, 2026 - PCB Final Touches - 2 hours
 Timelapse <a href="https://lapse.hackclub.com/timelapse/YbPYQX-tfSPW">link</a>.
 
 Today, I started ordering my board on JLCPCB.
